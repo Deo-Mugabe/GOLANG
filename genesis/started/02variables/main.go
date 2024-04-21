@@ -29,6 +29,6 @@ func main() {
 	var website = "Jesus is Lord" // by default lexer will make it string base on ur data
 	fmt.Println(website)
 	//no var sytle
-	numberOfUser := 43434 /// := can not be used ouside the function
-	fmt.Println(numberOfUser)
+	numberOfUser, num2 := 43434, 343 /// := can not be used ouside the function
+	fmt.Println(numberOfUser, num2)
 }
