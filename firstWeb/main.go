@@ -2,18 +2,38 @@ package main
 
 import (
 	"fmt"
+	"html/template"
 	"net/http"
 )
 
-func main() {
-	// url we are listening to and the  function to give response to the given request
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		n, err := fmt.Fprintf(w, "Hello, World")
-		if err != nil {
-			fmt.Println(err)
-		}
-		fmt.Printf("Number of bytes written: %d", n)
+const portNumber = ":8080"
 
-	})
-	http.ListenAndServe(":8080", nil)
+// Home page
+func Home(w http.ResponseWriter, r *http.Request) {
+	renderTemplate(w, "home.page.tmpl")
+}
+
+// takes a response, name of the template am a passing
+func renderTemplate(w http.ResponseWriter, tmpl string) {
+	parsedTemplate, _ := template.ParseFiles("./templates/" + tmpl)
+	err := parsedTemplate.Execute(w, nil)
+	if err != nil {
+		fmt.Println("error parsing template: ", err)
+		return
+	}
+}
+
+// About page
+func About(w http.ResponseWriter, r *http.Request) {
+	renderTemplate(w, "about.page.tmpl")
+}
+
+// main page
+func main() {
+	// url we are listening to and the annoymous function to give response to the given request
+	http.HandleFunc("/", Home)
+	http.HandleFunc("/about", About)
+
+	fmt.Printf("Started application on port number: %s", portNumber)
+	http.ListenAndServe(portNumber, nil)
 }
