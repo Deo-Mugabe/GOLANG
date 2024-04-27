@@ -2,11 +2,20 @@ package render
 
 import (
 	"bytes"
+	"github.com/Deo-Mugabe/GOLANG/pkg/config"
+	"github.com/Deo-Mugabe/GOLANG/pkg/models"
 	"html/template"
 	"log"
 	"net/http"
 	"path/filepath"
 )
+
+var app *config.AppConfig
+
+// NewTemplates sets the config for the templates package
+func NewTemplates(a *config.AppConfig) {
+	app = a
+}
 
 // RenderTemplate renders a template
 /*
@@ -17,16 +26,19 @@ template to the HTTP response.
 tmpl string: This parameter is a string representing the name of the template to render.
 */
 
-func RenderTemplate(w http.ResponseWriter, tmpl string) {
+func RenderTemplate(w http.ResponseWriter, tmpl string, td *models.TemplateData) {
+
+	// get the template cache from the app config
+	tc := app.TemplateCache
 	// create a template cache
 	/*
 		tc, err := createTemplateCache(): This line calls the createTemplateCache function to create a cache of
 		templates. It returns a map of template names to template objects and an error.
 	*/
-	tc, err := CreateTemplateCache()
-	if err != nil {
-		log.Fatal(err)
-	}
+	//tc, err := CreateTemplateCache()
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
 
 	// get requested template from cache
 	/*
@@ -35,7 +47,7 @@ func RenderTemplate(w http.ResponseWriter, tmpl string) {
 	*/
 	t, ok := tc[tmpl]
 	if !ok {
-		log.Fatal(err)
+		log.Fatal("Could not get template from template cache")
 	}
 	/*
 		buf := new(bytes.Buffer): This line creates a new buffer (bytes.Buffer) to store the rendered
@@ -46,17 +58,17 @@ func RenderTemplate(w http.ResponseWriter, tmpl string) {
 		err = t.Execute(buf, nil): This line executes the template (t) and writes the result to the buffer (buf).
 		   The nil value indicates that no data is being passed to the template for rendering.
 	*/
-	err = t.Execute(buf, nil)
-	if err != nil {
-		log.Println(err)
-	}
+	_ = t.Execute(buf, td)
+	//if err != nil {
+	//	log.Println(err)
+	//}
 
 	// render the template
 	/*
 		_, err = buf.WriteTo(w): This line writes the content of the buffer (buf), which contains the rendered
 		template, to the HTTP response writer (w). It returns the number of bytes written and any error encountered.
 	*/
-	_, err = buf.WriteTo(w)
+	_, err := buf.WriteTo(w)
 	if err != nil {
 		log.Println(err)
 	}
