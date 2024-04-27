@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>This is the Home page</h1>
-</body>
-</html>
+{{template "base".}}
+
+{{define "content"}}
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1>Welcome to the Home Page</h1>
+        <p>Tusimbude</p>
+      </div>
+    </div>
+  </div>
+{{end}}
