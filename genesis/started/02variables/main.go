@@ -1,26 +1,32 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
-//constant
+// constant
 const LoginToken string = "dffeagad" /// the name having the capital letter means its public
 
+var i = 32
+
 func main() {
+
+	i := 10 // by this am shadowing the globle scope i
+	fmt.Println(i)
+
+	var j float32 = float32(i) // type casting
+	fmt.Println(j)
+
+	k := 23 // by default Go will make it float64
+	fmt.Printf("%v, %T", k, k)
+
+	var toString string = strconv.Itoa(i) // lconverting to string
+	fmt.Println(toString)
+
 	var username string = "Jesus"
 	fmt.Println(username)
 	fmt.Printf("Variable is of type: %T \n", username) // %T is a place holder
-
-	var isLoggedin bool = true
-	fmt.Println(isLoggedin)
-	fmt.Printf("varriable is of type: %T \n", isLoggedin)
-
-	var smallval uint8 = 255
-	fmt.Println(smallval)
-	fmt.Printf("varriable is of type: %T \n", smallval)
-
-	var anotherVal int
-	fmt.Println(anotherVal)
-	fmt.Printf("variable is of type: %T \n", anotherVal)
 
 	var anotherVal2 string
 	fmt.Println(anotherVal2)

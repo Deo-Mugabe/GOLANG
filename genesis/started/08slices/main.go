@@ -38,4 +38,23 @@ func main() {
 	courses = append(courses[:index], courses[index+1:]...)
 	fmt.Println(courses)
 
+	// slices work like arrays difference is slices dont have size and also if you declare a new array
+	// from another array it creates a copy of that array, but for the slice it points to the same
+	// memory address. (uses pointers internally)
+
+	var a = []int{1, 2, 3, 4, 5}
+	var b = a
+
+	fmt.Println(a)
+	fmt.Println(b)
+	b[0] = 9
+	fmt.Println(a)
+	fmt.Println(b)
+	fmt.Println(len(a)) // len and cap are different even though may produce same results
+	fmt.Println(cap(b))
+	c := append(a, 6)
+	fmt.Println(c)
+	d := append(b, a...) // spread the values of a to add them to b then assign to d
+	fmt.Println(d)
+
 }
