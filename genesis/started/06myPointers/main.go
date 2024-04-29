@@ -5,8 +5,21 @@ import (
 	"log"
 )
 
+type Foo struct {
+	bar  int
+	name string
+}
+
 func main() {
 	fmt.Println("Welcome to pointers")
+
+	//var mypointer Foo
+	mypointer := Foo{40, "kd"}
+	//mypointer.bar = 40
+	//mypointer.name = "sing"
+	var myptr = &mypointer
+	fmt.Println(mypointer)
+	fmt.Println(*myptr)
 
 	myvalue := 23
 

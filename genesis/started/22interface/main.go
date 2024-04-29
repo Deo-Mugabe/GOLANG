@@ -19,6 +19,7 @@ func main() {
 
 }
 
+// define nethods and their return type
 type Animal interface {
 	Says() string
 	NumLegs() int

@@ -3,6 +3,9 @@ package main
 import "fmt"
 
 func main() {
+	msg := "Hello Jesus"
+	writeMessage(&msg)
+
 	fmt.Println("welcome to functions")
 
 	CalAdd2 := addNum(2, 4)
@@ -23,4 +26,8 @@ func addMany(vals ...int) (int, string) {
 		total += val
 	}
 	return total, "Here we go"
+}
+
+func writeMessage(msg *string) {
+	fmt.Println(*msg)
 }

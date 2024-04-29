@@ -3,6 +3,7 @@ package main
 import "fmt"
 
 func main() {
+
 	fmt.Println("Welcome to loops")
 
 	days := []string{"Monday", "Tuesday", "Wednesday"}
