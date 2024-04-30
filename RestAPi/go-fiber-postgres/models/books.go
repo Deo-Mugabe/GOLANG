@@ -1,7 +1,6 @@
 package models
 
-"gorm.io/gorm"
-
+import "gorm.io/gorm"
 
 type Books struct {
 	ID        uint    `gorm:"primary key;autoIncrement" json:"id"`
@@ -10,8 +9,7 @@ type Books struct {
 	Publisher *string `json:"publisher"`
 }
 
-
-func MigrateBooks(db *gorm.DB) error{
+func MigrateBooks(db *gorm.DB) error {
 	err := db.AutoMigrate(&Books{})
 	return err
 }

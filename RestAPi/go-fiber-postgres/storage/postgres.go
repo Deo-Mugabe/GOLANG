@@ -2,6 +2,7 @@ package storage
 
 import (
 	"fmt"
+
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -15,17 +16,14 @@ type Config struct {
 	SSLMode  string
 }
 
-
-func NewConnection(Config *Config) (*gorm.DB, error) {
-dsn := fmt.Sprintf(
-		"host=%s port=%s  password=%s  dbname=%s  sslmode=%s,",
-		config.Host, config.Port, config.Host.Password, config.User, config.DBName, 
-		config.SSLMode
+func NewConnection(config *Config) (*gorm.DB, error) {
+	dsn := fmt.Sprintf(
+		"host=%s port=%s user=%s password=%s dbname=%s sslmode=%s",
+		config.Host, config.Port, config.User, config.Password, config.DBName, config.SSLMode,
 	)
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
-	if err != nil{
+	if err != nil {
 		return db, err
 	}
-
 	return db, nil
 }
