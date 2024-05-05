@@ -1,0 +1,2 @@
+go mod init github.com/Deo-Mugabe/GOLANG/tree/main/RestAPi/gin-framework
+go get github.com/gin-gonic/gin
