@@ -3,3 +3,25 @@
 go get -u github.com/gorilla/mux
 go get -u gorm.io/gorm
 go get -u gorm.io/driver/msql
+
+
+Experience with web frameworks like Gin, Echo, fibre  is a plus.
+GRPC
+
+Job Description
+
+Strong Golang development
+Knowledge of Go’s concurrency patterns and best practices.
+Experience with Go’s standard library and popular third-party packages.
+Working experience in cloud platforms (e.g., AWS, GCP, Azure) and services.
+Experience with microservices architecture and design principles.
+Experience with Kubernetes, Docker
+Experience in designing robust, large scale backend system, considering for performance, scalability, security, and maintainability.
+Familiarity with web frameworks and libraries for building web services and APIs(eg., Gin, Echo)
+Proficiency in database systems(SQL and NOSQL databases) and Data modeling.
+Understanding of containerization and orchestration technologies(e.g. docker, kubernetes).
+Must be proficient with communication protocols such as MQTT, HTTPS, FTP, gRPC, etc.
+Must be proficient with SDLC process.
+Must have strong understanding of Linux OS and application development experience in Linux OS
+Strong problem solving and analytical skills.
+Excellent communication skills to interact with team members and stakeholders.
