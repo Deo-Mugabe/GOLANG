@@ -1,4 +1,0 @@
-go mod init github.com/Deo-Mugabe/GOLANG/tree/main/RestAPi/sample
-go get github.com/gin-gonic/gin
-
-go get -u gorm.io/gorm
