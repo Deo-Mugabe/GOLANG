@@ -15,6 +15,7 @@ func Find_Minimum_in_Rotated_Sorted(nums []int) int {
 	end := len(nums) - 1
 
 	for start < end {
+
 		mid := start + (end-start)/2
 
 		if nums[mid] < nums[end] {
@@ -22,7 +23,6 @@ func Find_Minimum_in_Rotated_Sorted(nums []int) int {
 		} else {
 			start = mid + 1
 		}
-
 	}
 	return nums[end]
 }
