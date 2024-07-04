@@ -9,3 +9,8 @@ air
 load environment variable
 
 go get github.com/joho/godotenv
+
+
+go get go.mongodb.org/mongo-driver/mongo
+
+mongo pwd = Sn85AsaICWWhvQxy
