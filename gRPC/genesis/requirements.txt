@@ -1,0 +1,11 @@
+go mod init github.com/Deo-Mugabe/GOLANG/tree/main/gRPC/genesis
+go get github.com/gin-gonic/gin
+
+go get -u gorm.io/gorm
+
+docker-compose up --build
+
+
+$ go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.28
+
+$ export PATH="$PATH:$(go env GOPATH)/bin"
