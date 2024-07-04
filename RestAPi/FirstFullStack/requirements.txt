@@ -1,4 +1,11 @@
 go mod init github.com/Deo-Mugabe/GOLANG/tree/main/RestAPi/FirstFullStack
 go get github.com/gofiber/fiber/v2
 
-go install github.com/cosmtrek/air@latest
+// for auto rebuild without restarting app
+go install github.com/air-verse/air@latest
+
+air
+
+load environment variable
+
+go get github.com/joho/godotenv
