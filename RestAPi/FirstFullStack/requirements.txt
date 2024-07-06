@@ -14,3 +14,7 @@ go get github.com/joho/godotenv
 go get go.mongodb.org/mongo-driver/mongo
 
 mongo pwd = Sn85AsaICWWhvQxy
+
+
+
+At its core, @tanstack/react-query (formerly known as React Query) is a library designed to simplify data fetching, caching, and management within React applications. It offers a suite of tools to streamline how you handle asynchronous data operations in your React components. Here's a breakdown of its key functionalities:
