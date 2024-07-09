@@ -1,0 +1,9 @@
+go mod init github.com/Deo-Mugabe/GOLANG/tree/main/RestAPi/jwt-mysql-test
+go get github.com/gin-gonic/gin
+
+go get -u gorm.io/gorm
+
+docker-compose up --build
+
+go get go.mongodb.org/mongo-driver/mongo
+
