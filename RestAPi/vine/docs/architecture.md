@@ -1,17 +1,3 @@
-# Install core dependencies
-
-go get -u github.com/go-chi/chi/v5
-go get -u github.com/jmoiron/sqlx
-go get -u github.com/denisenkom/go-mssqldb
-go get -u github.com/robfig/cron/v3
-go get -u github.com/pkg/sftp
-go get -u github.com/rs/zerolog
-go get -u github.com/spf13/viper
-go get -u github.com/joho/godotenv
-go get -u github.com/prometheus/client_golang/prometheus
-go get -u golang.org/x/crypto/ssh
-
-
 
 vine-automation/
 │
