@@ -1,5 +1,9 @@
 package domain
 
+import (
+	"time"
+)
+
 type Prisoner struct {
 	// Identity
 	ID       int64  // name_id
@@ -77,8 +81,8 @@ func (p *Prisoner) IsMainRecord() bool {
 }
 
 // ParseDOB attempts to parse DOB string to time.Time
-// func (p *Prisoner) ParseDOB() (time.Time, error) {
-// 	// Handle various DOB formats from database
-// 	// Implementation will handle: YYYYMMDD, YYYY-MM-DD, MM/DD/YYYY, etc.
-// 	return parseDOBFlexible(p.DOB)
-// }
+func (p *Prisoner) ParseDOB() (time.Time, error) {
+	// Handle various DOB formats from database
+	// Implementation will handle: YYYYMMDD, YYYY-MM-DD, MM/DD/YYYY, etc.
+	return parseDOBFlexible(p.DOB)
+}
