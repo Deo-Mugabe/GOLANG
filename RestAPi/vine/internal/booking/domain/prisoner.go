@@ -80,5 +80,5 @@ func (p *Prisoner) IsMainRecord() bool {
 // func (p *Prisoner) ParseDOB() (time.Time, error) {
 // 	// Handle various DOB formats from database
 // 	// Implementation will handle: YYYYMMDD, YYYY-MM-DD, MM/DD/YYYY, etc.
-// 	return parseDOBFlexible(p.DOB)
+// 	return parseDOBFlexible(p.DOB), nil
 // }
