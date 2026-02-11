@@ -65,7 +65,7 @@ type ReleaseRepository interface {
 // FacilityRepository handles facility history data access
 type FacilityRepository interface {
 	// Read operations
-	GetByID(ctx context.Context, id int) (*Facility, error)
+	GetByID(ctx context.Context, id int64) (*Facility, error)
 	GetLatestByBookingID(ctx context.Context, bookID int64) (*Facility, error)
 	ListByBookingID(ctx context.Context, bookingID int64) ([]*Facility, error)
 }
@@ -73,8 +73,8 @@ type FacilityRepository interface {
 // MugshotRepository handles mugshot metadata access
 type MugshotRepository interface {
 	// Read operations
-	GetByID(ctx context.Context, id int) (*Mugshot, error)
+	GetByID(ctx context.Context, id int64) (*Mugshot, error)
 	GetByNameID(ctx context.Context, nameID int64) ([]*Mugshot, error)
 	GetLatestByNameID(ctx context.Context, nameID int64) (*Mugshot, error)
-	ListByNameID(ctx context.Context, nameID int64) ([]*Mugshot, error)
+	ListByNameID(ctx context.Context, nameID int64, limit int) ([]*Mugshot, error)
 }

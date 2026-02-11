@@ -28,7 +28,7 @@ type chargeRepo struct {
 }
 
 // NewChargeRepository creates a new charge repository
-func NewChargeRepository(db *database.DB) chargeDB {
+func NewChargeRepository(db *database.DB) domain.ChargeRepository {
 	return &chargeRepo{db: db}
 }
 
