@@ -43,3 +43,37 @@ func toBookingDB(d *domain.Booking) *bookingDB {
 
 	return db
 }
+
+func toPrisonerDomain(db *prisonerDB) *domain.Prisoner {
+	return &domain.Prisoner{
+		ID:          db.NameID,
+		StateID:     db.StateID,
+		NameType:    db.NameType,
+		AliasID:     db.AliasID,
+		FirstName:   db.FirstName,
+		MiddleName:  db.MiddleName,
+		LastName:    db.LastName,
+		DOB:         db.DOB,
+		Sex:         db.Sex,
+		Race:        db.Race,
+		Height:      db.Height,
+		Weight:      db.Weight,
+		Eye:         db.Eye,
+		Hair:        db.Hair,
+		SSN:         db.SSN,
+		DrLicense:   db.DrLicense,
+		DLState:     db.DLState,
+		Birthplace:  db.Birthplace,
+		StreetNbr:   db.StreetNbr,
+		Street:      db.Street,
+		City:        db.City,
+		State:       db.State,
+		Zip:         db.Zip,
+		HomePhone:   db.HomePhone,
+		WorkPhone:   db.WorkPhone,
+		MobilePhone: db.MobilePhone,
+		Marital:     db.Marital,
+		Occupation:  db.Occupation,
+		Employer:    db.Employer,
+	}
+}

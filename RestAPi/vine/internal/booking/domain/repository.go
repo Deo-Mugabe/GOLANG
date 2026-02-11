@@ -9,7 +9,7 @@ import (
 type BookingRepository interface {
 	GetByID(ctx context.Context, id int64) (*Booking, error)
 	GetWithDetails(ctx context.Context, id int64) (*BookingWithDetails, error)
-	ListActive(ctx context.Context, id int64) ([]*Booking, error)
+	ListActive(ctx context.Context, limit, offset int) ([]*Booking, error)
 	Count(ctx context.Context) (int64, error)
 
 	// Processing queries
