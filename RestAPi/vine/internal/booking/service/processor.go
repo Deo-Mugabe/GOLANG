@@ -3,6 +3,7 @@ package service
 import (
 	"context"
 	"fmt"
+	"path/filepath"
 	"time"
 
 	"github.com/Deo-Mugabe/GOLANG/internal/booking/domain"
@@ -18,8 +19,8 @@ type ProcessorService struct {
 	releaseRepo  domain.ReleaseRepository
 	facilityRepo domain.FacilityRepository
 	mugshotRepo  domain.MugshotRepository
-	fileGen      *domain.FileGeneratorService
-	mugshotSvc   *domain.MugshotService
+	fileGen      *FileGeneratorService
+	mugshotSvc   *MugshotService
 	logger       zerolog.Logger
 }
 
@@ -32,8 +33,8 @@ func NewProcessorService(
 	releaseRepo domain.ReleaseRepository,
 	facilityRepo domain.FacilityRepository,
 	mugshotRepo domain.MugshotRepository,
-	fileGen *domain.FileGeneratorService,
-	mugshotSvc *domain.MugshotService,
+	fileGen *FileGeneratorService,
+	mugshotSvc *MugshotService,
 	logger zerolog.Logger,
 ) *ProcessorService {
 	return &ProcessorService{
@@ -78,9 +79,19 @@ func (s *ProcessorService) ProcessBookings(ctx context.Context, since time.Time)
 	s.logger.Info().Int("count", len(pairs)).Msg("fetched booking pairs")
 
 	// Generate VINE data for all pairs
-	vineData, err := s.GenerateVINEData(ctx, pairs)
+	vineData, err := s.GenerateVINEData(ctx, pairs) // ✅ Use returned value
 	if err != nil {
 		return result, fmt.Errorf("failed to generate VINE data: %w", err)
+	}
+
+	// Write VINE file
+	outputPath := filepath.Join(
+		s.fileGen.config.Files.NewVineFilePath,
+		s.fileGen.config.Files.InterFile,
+	)
+
+	if err := s.fileGen.WriteVINEFile(ctx, vineData, outputPath); err != nil {
+		return result, fmt.Errorf("failed to write VINE file: %w", err)
 	}
 
 	// Track processing results
@@ -90,6 +101,7 @@ func (s *ProcessorService) ProcessBookings(ctx context.Context, since time.Time)
 	}
 
 	result.TotalProcessed = int64(len(pairs))
+	result.GeneratedFile = outputPath
 	result.EndTime = time.Now()
 
 	s.logger.Info().
