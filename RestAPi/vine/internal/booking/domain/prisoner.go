@@ -1,5 +1,11 @@
 package domain
 
+import (
+	"fmt"
+	"strings"
+	"time"
+)
+
 type Prisoner struct {
 	// Identity
 	ID       int64  // name_id
@@ -77,8 +83,38 @@ func (p *Prisoner) IsMainRecord() bool {
 }
 
 // ParseDOB attempts to parse DOB string to time.Time
-// func (p *Prisoner) ParseDOB() (time.Time, error) {
-// 	// Handle various DOB formats from database
-// 	// Implementation will handle: YYYYMMDD, YYYY-MM-DD, MM/DD/YYYY, etc.
-// 	return parseDOBFlexible(p.DOB), nil
-// }
+func (p *Prisoner) ParseDOB() (*time.Time, error) {
+	if p.DOB == "" || p.DOB == "null" || p.DOB == "N/A" {
+		return &time.Time{}, nil
+	}
+
+	cleanDOB := strings.TrimSpace(p.DOB)
+
+	// Handle empty or known null representations
+	switch cleanDOB {
+	case "", "null", "NULL", "N/A", "n/a":
+		return nil, nil
+	case "00/00/0000", "0000-00-00":
+		return nil, nil
+	}
+
+	// Try different date formats
+	formats := []string{
+		"2006-01-02", // YYYY-MM-DD
+		"20060102",   // YYYYMMDD
+		"01/02/2006", // MM/DD/YYYY
+		"1/2/2006",   // M/D/YYYY
+		"2006",       // Year only
+	}
+	// Attempt parsing with each format
+	for _, layout := range formats {
+		parsed, err := time.Parse(layout, cleanDOB)
+		if err == nil {
+			// Normalize to UTC midnight (prevents timezone drift issues)
+			normalized := parsed.UTC()
+			return &normalized, nil
+		}
+	}
+	// If we reach here, DOB was provided but invalid
+	return nil, fmt.Errorf("invalid DOB format: %q", cleanDOB)
+}
